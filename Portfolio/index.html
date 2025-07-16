@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robert Koopedi | Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#" class="logo">Portfolio</a>
+      <ul>
+        <li class="active"><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#project">Project</a></li>
+      </ul>
+    </nav>
+
+    <section id="home" class="main darker-color">
+      <div class="main-info">
+        <h1>Sehulong Robert Koopedi</h1>
+        <h2>
+          Front-End Developer | Aspiring Full-Stack Engineer | Tech Enthusiast
+        </h2>
+        <p>
+          Welcome to my online portfolio! I’m a developer based in Pretoria,
+          South Africa. I specialize in building scalable web applications using
+          front-end and back-end tools...
+        </p>
+        <div class="btn-sci">
+          <a
+            href="https://drive.google.com/file/d/1_oa8P2faLP0pwaq8w4A9N4_mYs3T6nW_/view?usp=sharing"
+            class="btn"
+            download
+            >Download CV</a
+          >
+          <div class="sci">
+            <a href="https://github.com/robert-koopedi" target="_blank"
+              ><i class="bx bxl-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/sehulong-robert-koopedi-8613781b9"
+              target="_blank"
+              ><i class="bx bxl-linkedin"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/share/RSapUNgJRebaEKku/?mibextid=LQQJ4d"
+              target="_blank"
+              ><i class="bx bxl-facebook"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="main-img">
+        <div class="img-box">
+          <div class="img-item">
+            <img src="assets\profile picture.jpeg" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="main">
+      <div class="main-info">
+        <h1>About Me</h1>
+        <h2>I'm a Software Developer</h2>
+        <p>
+          I’m a passionate software development graduate with a strong focus on
+          front-end technologies—currently sharpening my skills in HTML, CSS,
+          JavaScript and React. My hands-on projects are designed to build
+          confidence and creativity while exploring the principles of web
+          accessibility, clean design, and responsive interfaces. I thrive in
+          environments that value collaboration, continuous learning, and
+          innovation, especially in tech startups and e-commerce spaces. My
+          current goals include: Enhancing my testing and debugging skills
+          Contributing to open-source projects Bridging the gap between
+          front-end and back-end to become a full-stack developer Looking ahead,
+          I aim to grow into leadership roles, gain expertise in cloud
+          platforms, and one day launch my own tech consultancy. Every step of
+          my journey is driven by a deep commitment to growth and creating
+          impactful digital experiences.
+        </p>
+      </div>
+    </section>
+
+    <section id="project" class="main darker-color">
+      <div class="main-info">
+        <div class="grid-container">
+          <div class="project">
+            <img
+              src="assets\projects\Project 2.png"
+              alt="Screenshot of project"
+            />
+            <h3>Browser-based mini-game</h3>
+            <p>
+              Escape Vanilla JS Challenge is a browser-based mini-game that
+              teaches core JavaScript concepts through interactive puzzles.
+              Players solve challenges using real-world skills like working with
+              JSON, Sets, and asynchronous code to "escape" each room. It’s a
+              fun, educational project that showcases clean, modular JavaScript
+              and DOM manipulation.
+            </p>
+          </div>
+          <div class="project">
+            <img
+              src="assets\projects\Project 1.png"
+              alt="Screenshot of project"
+            />
+            <h3>Dynamic dashboard web app</h3>
+            <p>
+              A dynamic dashboard web app that displays a random nature
+              background, live Bitcoin prices, current local weather, and a
+              real-time clock. Built using vanilla JavaScript and powered by
+              public APIs like Unsplash, CoinGecko, and OpenWeatherMap.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="theme-toggle-fixed">
+      <input type="checkbox" id="theme-switch" />
+      <label for="theme-switch" id="theme-icon">🌙</label>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeSwitch = document.getElementById("theme-switch");
+        const themeIcon = document.getElementById("theme-icon");
+        const body = document.body;
+
+        function setThemeIcon(isLight) {
+          themeIcon.textContent = isLight ? "☀️" : "🌙";
+        }
+
+        // Load saved theme
+        const isLight = localStorage.getItem("theme") === "light";
+        if (isLight) {
+          body.classList.add("light-mode");
+          themeSwitch.checked = true;
+        }
+        setThemeIcon(isLight);
+
+        themeSwitch.addEventListener("change", function () {
+          const isLight = this.checked;
+          body.classList.toggle("light-mode", isLight);
+          localStorage.setItem("theme", isLight ? "light" : "dark");
+          setThemeIcon(isLight);
+        });
+      });
+
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".navbar ul li");
+        let currentSection = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          if (scrollY >= sectionTop) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          const linkHref = link
+            .querySelector("a")
+            .getAttribute("href")
+            .substring(1);
+          if (linkHref === currentSection) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
